@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,7 @@ public class LibraryService {
 	
 	// BookCopy operations
 	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/bookCopy",method=RequestMethod.POST,consumes="application/json")
 	public void saveBookCopy(@RequestBody BookCopies bookCopy) throws SQLException
@@ -63,7 +65,7 @@ public class LibraryService {
 			}
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/bookCopies",method=RequestMethod.GET,consumes="application/json",produces="application/json")
 	public List<BookCopies> readBookCopiesById(@RequestParam("bookId") Integer bookId,@RequestParam("branchId") Integer branchId) throws SQLException
@@ -77,7 +79,7 @@ public class LibraryService {
 		return null;
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/bookCopies/{bookId}",method=RequestMethod.PUT,consumes="application/json")
 	public void updateBookCopies(@PathVariable("bookId") Integer bookId,@RequestParam("branchId") Integer branchId,@RequestBody BookCopies bookCopy) throws SQLException
@@ -89,6 +91,7 @@ public class LibraryService {
 			}
 	}
 	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/bookCopies/return",method=RequestMethod.PUT,consumes="application/json")
 	public void updateBookCopies2(@RequestBody BookCopies bookCopy) throws SQLException  //when returning book
@@ -107,6 +110,7 @@ public class LibraryService {
 	
 	//Library Branch Operations
 	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/libraryBranches/{branchId}",method=RequestMethod.PUT,consumes="application/json")
 	public void updateLibraryBranch(@PathVariable("branchId") Integer branchId,@RequestBody LibraryBranch libraryBranch) throws SQLException
@@ -118,9 +122,9 @@ public class LibraryService {
 			}
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
-	@RequestMapping(value="/libraryBranches/{branchId}",method=RequestMethod.DELETE,consumes="application/json")
+	@RequestMapping(value="/libraryBranches/{branchId}",method=RequestMethod.DELETE)
 	public void deleteLibraryBranch(@PathVariable("branchId") Integer branchId) throws SQLException
 	{
 			try {
@@ -130,7 +134,7 @@ public class LibraryService {
 			}
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/libraryBranch",method=RequestMethod.POST,consumes="application/json")
 	public void saveLibraryBranch(@RequestBody LibraryBranch libraryBranch) throws SQLException
@@ -142,7 +146,7 @@ public class LibraryService {
 			}
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/libraryBranches",method=RequestMethod.GET,produces="application/json")
 	public List<LibraryBranch> readLibraryBranch() throws SQLException
@@ -174,7 +178,7 @@ public class LibraryService {
 		return null;
 	}
 	
-	
+	@CrossOrigin
 	@Transactional
 	@RequestMapping(value="/libraryBranches/{branchName}",method=RequestMethod.GET,produces="application/json")
 	public List<LibraryBranch> readLibraryBranchesByName(@PathVariable("branchName") String branchName) throws SQLException
